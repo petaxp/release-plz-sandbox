@@ -91,7 +91,7 @@ For an intentional correction:
 
 1. Prefer a focused PR and explain the error, the correction, and why a manual
    edit is needed in its description.
-2. Request the `changelog: manual` label from someone able to manage labels.
+2. Request the `changelog` label from someone able to manage labels.
 3. A release maintainer reviews the reason and the latest diff, then records an
    approving review before merging. The label requests an exception; it is not
    evidence of approval or a permission grant.

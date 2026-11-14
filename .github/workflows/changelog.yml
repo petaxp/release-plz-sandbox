@@ -55,7 +55,7 @@ jobs:
               pr.head.repo?.full_name === pr.base.repo.full_name &&
               pr.head.ref.startsWith('release-plz-') &&
               pr.base.ref === pr.base.repo.default_branch;
-            const manual = pr.labels.some(label => label.name === 'changelog: manual');
+            const manual = pr.labels.some(label => label.name === 'changelog');
             let message;
             if (!changed) {
               message = 'No CHANGELOG.md changes. No exception is needed.';
@@ -65,7 +65,7 @@ jobs:
               message = 'Manual changelog exception requested. A maintainer must review the reason and current diff and record approval before merging. The label is not approval.';
               core.warning(message);
             } else {
-              message = 'Release-plz generates CHANGELOG.md. Remove this edit and describe the change in your Conventional Commit PR title. For an intentional correction, explain why in the PR description, add the "changelog: manual" label, and obtain maintainer review.';
+              message = 'Release-plz generates CHANGELOG.md. Remove this edit and describe the change in your Conventional Commit PR title. For an intentional correction, explain why in the PR description, add the "changelog" label, and obtain maintainer review.';
               core.setFailed(message);
             }
             await core.summary
