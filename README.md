@@ -64,6 +64,20 @@ The changelog contains versioned release sections only. Release-plz prepares
 those sections in release PRs; it does not maintain an empty `[Unreleased]`
 placeholder.
 
+## PR title validation
+
+The **PR title / Validate PR title** check requires Conventional Commit titles,
+for example `feat: add a greeting`, `fix: handle empty names`, or
+`feat!: change the greeting API`. It runs when a PR opens, its title changes,
+new commits arrive, or it reopens, including PRs from forks. The workflow reads
+PR metadata only and never checks out or executes PR code.
+
+Use the conventional title as the final squash commit title. For breaking
+changes, include `!` in that title. Intermediate commits are not validated by
+this check. To enforce it as a merge gate, require **Validate PR title** in the
+branch protection or ruleset for `main`; merely adding the workflow does not
+block merging failed checks.
+
 ## Local validation
 
 ```sh
