@@ -1,6 +1,6 @@
 [package]
 name = "petaxp-release-plz-sandbox"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "A minimal Rust crate for experimenting with release-plz"
 repository = "https://github.com/petaxp/release-plz-sandbox"
