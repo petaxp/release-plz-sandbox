@@ -50,6 +50,20 @@ The workflow also supports **Actions → Release-plz → Run workflow** on `main
 for a retry. Re-running an already completed release should not duplicate it.
 Disable the Release-plz workflow in Actions to stop the experiment.
 
+## Try the library
+
+```rust
+use petaxp_release_plz_sandbox::{farewell, greeting, greeting_for};
+
+assert_eq!(greeting(), "Hello from the release-plz sandbox!");
+assert_eq!(greeting_for("Rust"), "Hello, Rust!");
+assert_eq!(farewell(), "Goodbye from the release-plz sandbox!");
+```
+
+The changelog contains versioned release sections only. Release-plz prepares
+those sections in release PRs; it does not maintain an empty `[Unreleased]`
+placeholder.
+
 ## Local validation
 
 ```sh
