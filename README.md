@@ -58,7 +58,8 @@ cargo clippy --locked --all-targets --all-features -- -D warnings
 cargo test --locked --all-features
 ```
 
-release-plz is pinned to 0.4.3; third-party actions are pinned to commit SHAs.
+release-plz is pinned to 0.4.3; actions use version tags (`v6`, `v0.5`)
+and the Rust toolchain action follows `stable`.
 See [release-plz configuration](https://release-plz.dev/docs/config),
 [GitHub setup](https://release-plz.dev/docs/github/quickstart), and
 [token behavior](https://release-plz.dev/docs/github/token).

@@ -27,12 +27,12 @@ jobs:
       contents: write
       pull-requests: read
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
-      - uses: release-plz/action@66b324fd6c72d05d2a08568492ecdd62bfb8a62b # v0.5
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: release-plz/action@v0.5
         with:
           command: release
           version: 0.4.3
@@ -48,12 +48,12 @@ jobs:
     outputs:
       pr: ${{ steps.release-plz.outputs.pr }}
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
-      - uses: release-plz/action@66b324fd6c72d05d2a08568492ecdd62bfb8a62b # v0.5
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: release-plz/action@v0.5
         id: release-plz
         with:
           command: release-pr
