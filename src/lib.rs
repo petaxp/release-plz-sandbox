@@ -24,6 +24,15 @@ pub fn greeting_for(name: &str) -> String {
     }
 }
 
+/// Returns a friendly farewell.
+///
+/// ```
+/// assert_eq!(petaxp_release_plz_sandbox::farewell(), "Goodbye from the release-plz sandbox!");
+/// ```
+pub fn farewell() -> &'static str {
+    "Goodbye from the release-plz sandbox!"
+}
+
 #[cfg(test)]
 mod tests {
     use super::greeting;
