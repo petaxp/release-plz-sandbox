@@ -78,6 +78,49 @@ this check. To enforce it as a merge gate, require **Validate PR title** in the
 branch protection or ruleset for `main`; merely adding the workflow does not
 block merging failed checks.
 
+## Advisory changelog policy
+
+Release-plz owns `CHANGELOG.md`. Ordinary development PRs should leave it alone:
+use Conventional Commit titles and let the release PR generate the notes.
+The **Changelog policy / Check changelog ownership** workflow reports a failure
+for manual edits without an exception label. Additions, deletions, and renames
+of the root changelog count as edits. The workflow reads the complete PR file
+list via GitHub's API and fails if the API cannot return every file.
+
+For an intentional correction:
+
+1. Prefer a focused PR and explain the error, the correction, and why a manual
+   edit is needed in its description.
+2. Request the `changelog: manual` label from someone able to manage labels.
+3. A release maintainer reviews the reason and the latest diff, then records an
+   approving review before merging. The label requests an exception; it is not
+   evidence of approval or a permission grant.
+4. After any new commits, obtain renewed maintainer review. For historical
+   corrections, keep published versions and tags unchanged.
+
+The label makes the check pass with a warning reminding maintainers to review.
+Removing it reruns the check and restores failure if a manual edit remains.
+PR updates, title/description edits, and reopening also rerun the check.
+The check uses current GitHub metadata rather than trusting an old event's labels.
+
+Release-plz PRs are recognized by the `github-actions[bot]` author, a
+`release-plz-` branch in this repository, and the default target branch. A branch
+name alone does not qualify. These PRs do not need the label; maintainers still
+review their notes. If release-plz is later moved to a dedicated App or PAT,
+update the expected author explicitly. Because `GITHUB_TOKEN` does not trigger
+normal PR workflows, the release workflow explicitly calls this check for its
+release PR alongside the existing branch validation.
+
+The workflow is metadata-only, uses a read-only token, and never checks out or
+executes PR code. No branch protection or ruleset is configured. A failed check
+is advisory: on Free private repositories, write-access users can still merge
+or push directly. The documented maintainer process supplies the approval;
+this workflow does not verify reviews or dismiss stale approvals automatically.
+To retry manually, run **Actions → Changelog policy → Run workflow** on `main`
+with the PR number. The same workflow can be used as a required check where
+GitHub's plan and repository policy support it, but the reusable release check
+is attached to the main workflow run rather than the PR commit.
+
 ## Local validation
 
 ```sh

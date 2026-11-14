@@ -69,3 +69,12 @@ jobs:
       contents: read
     with:
       ref: ${{ fromJSON(needs.release-pr.outputs.pr).head_branch }}
+
+  check-release-changelog:
+    needs: release-pr
+    if: needs.release-pr.outputs.pr != '' && needs.release-pr.outputs.pr != 'null'
+    uses: ./.github/workflows/changelog.yml
+    permissions:
+      pull-requests: read
+    with:
+      pull_request_number: ${{ fromJSON(needs.release-pr.outputs.pr).number }}
